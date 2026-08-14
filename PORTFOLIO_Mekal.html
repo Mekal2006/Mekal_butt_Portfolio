@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mekal Butt | Versatile Systems Architect</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* GLOBAL VARIABLES & THEME */
+        :root {
+            --bg-dark: #0b0c10;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-main: #f8f9fa;
+            --text-muted: #adb5bd;
+            
+            /* Aurora Gradients */
+            --grad-landing: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+            --grad-services: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --grad-skills: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* CUSTOM SCROLLBAR */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: #4facfe; border-radius: 4px; }
+
+        /* NAVIGATION */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(11, 12, 16, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: transparent;
+            background: var(--grad-landing);
+            -webkit-background-clip: text;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover { color: #00f2fe; }
+
+        /* SECTION LAYOUTS */
+        section {
+            padding: 120px 10%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+        .title-landing { background-image: var(--grad-landing); }
+        .title-services { background-image: var(--grad-services); }
+        .title-skills { background-image: var(--grad-skills); }
+
+        /* GLASSMORPHISM CARDS */
+        .glass-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary {
+            background: var(--grad-landing);
+            color: #000;
+            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.3);
+        }
+        .btn-primary:hover {
+            box-shadow: 0 6px 25px rgba(0, 242, 254, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* RUBBER BAND ANIMATION FOR TECH TAGS */
+        @keyframes rubberBand {
+            0% { transform: scale3d(1, 1, 1); }
+            30% { transform: scale3d(1.25, 0.75, 1); }
+            40% { transform: scale3d(0.75, 1.25, 1); }
+            50% { transform: scale3d(1.15, 0.85, 1); }
+            65% { transform: scale3d(0.95, 1.05, 1); }
+            75% { transform: scale3d(1.05, 0.95, 1); }
+            100% { transform: scale3d(1, 1, 1); }
+        }
+        .tech-tag {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            margin: 0.5rem 0.5rem 0 0;
+            color: var(--text-muted);
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+        .tech-tag:hover {
+            animation: rubberBand 0.8s;
+            color: #fff;
+            border-color: #f093fb;
+        }
+
+        /* GRID LAYOUTS */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+
+        /* SPECIFIC SECTIONS */
+        /* Landing */
+        #landing h1 { font-size: 5vw; line-height: 1.1; margin-bottom: 1.5rem; }
+        .motto { font-size: 1.5rem; color: var(--text-muted); max-width: 800px; margin-bottom: 3rem; }
+        .disclaimer { font-size: 0.9rem; color: #4facfe; margin-top: 1rem; font-style: italic; opacity: 0.8; }
+
+        /* Skills Progress Bars */
+        .skill-group { margin-bottom: 1.5rem; }
+        .skill-header { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
+        .progress-bar-bg { width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; }
+        .progress-bar-fill { height: 100%; background: var(--grad-skills); width: 0; transition: width 1.5s cubic-bezier(0.1, 0.7, 0.1, 1); }
+
+        /* Forms */
+        input, textarea {
+            width: 100%; padding: 15px; margin-bottom: 20px;
+            background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border);
+            border-radius: 8px; color: #fff; font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        input:focus, textarea:focus { outline: none; border-color: #00f2fe; }
+        
+        /* 3D Flip Card (About Section) */
+        .flip-card-container { display: flex; gap: 2rem; margin-top: 2rem; perspective: 1000px; }
+        .flip-card { width: 100%; height: 200px; position: relative; transition: transform 0.8s; transform-style: preserve-3d; cursor: pointer; }
+        .flip-card:hover { transform: rotateY(180deg); }
+        .flip-front, .flip-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 16px; display: flex; flex-direction: column; justify-content: center; padding: 2rem; }
+        .flip-front { background: var(--glass-bg); border: 1px solid var(--glass-border); }
+        .flip-back { background: rgba(79, 172, 254, 0.1); border: 1px solid #4facfe; transform: rotateY(180deg); }
+
+        /* SCROLL ANIMATIONS CLASSES */
+        .hidden { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
+        .show { opacity: 1; transform: translateY(0); }
+        
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            section { padding: 100px 5%; }
+            #landing h1 { font-size: 3.5rem; }
+            .grid-2 { grid-template-columns: 1fr; }
+            .flip-card-container { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <a href="#landing" class="logo">MB.</a>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- 1. LANDING PAGE -->
+    <section id="landing">
+        <h1 class="hidden">Mekal Butt.</h1>
+        <p class="motto hidden" style="transition-delay: 0.2s;">
+            A versatile systems architect dedicated to flawless execution. From backend databases and rigorous C++ software to Python AI automation—I deliver perfection tailored to your exact requirements, with the strategic insight to help you define exactly what you need.
+        </p>
+        <div class="hidden" style="transition-delay: 0.4s;">
+            <a href="https://www.linkedin.com/in/mekal-butt-039581346" target="_blank" class="btn btn-primary">Explore My Full Profile (LinkedIn)</a>
+            <p class="disclaimer">*(My CV, comprehensive project history, and GitHub links are fully hosted on my LinkedIn).*</p>
+        </div>
+    </section>
+
+    <!-- 2. ABOUT ME -->
+    <section id="about">
+        <h2 class="section-title title-landing hidden">About My Approach</h2>
+        <div class="grid-2">
+            <div class="hidden">
+                <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">
+                    My foundation is built on 4+ years of rigorous C++ logic and object-oriented programming. That deep understanding of memory management and system architecture serves as my absolute bedrock.
+                </p>
+                <p style="font-size: 1.1rem;">
+                    It allows me to rapidly master and deploy modern tools—whether that is engineering autonomous Python AI agents, designing normalized relational databases, or mapping enterprise network topologies. I operate as an independent consultant who doesn't just write code blindly, but offers brilliant architectural opinions to help you navigate your own ideas.
+                </p>
+            </div>
+            
+            <div class="flip-card-container hidden" style="transition-delay: 0.3s;">
+                <div class="flip-card">
+                    <div class="flip-front">
+                        <h3 style="color: #00f2fe; font-size: 1.5rem;">The Consultant Mindset</h3>
+                        <p style="margin-top: 1rem; color: var(--text-muted);">Hover to view.</p>
+                    </div>
+                    <div class="flip-back">
+                        <p>I don't just take orders. I analyze your goals, identify potential logical pitfalls, and engineer a customized roadmap to ensure your final product is structurally flawless.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. SERVICES (The 6 Pillars) -->
+    <section id="services">
+        <h2 class="section-title title-services hidden">My Services & Expertise</h2>
+        <div class="grid-3">
+            <div class="glass-card hidden">
+                <h3 style="color: #f5576c; margin-bottom: 1rem;">AI & Automation</h3>
+                <p>Building state-aware, autonomous agents and complex API-integrated workflow pipelines using Python.</p>
+            </div>
+            <div class="glass-card hidden" style="transition-delay: 0.1s;">
+                <h3 style="color: #f5576c; margin-bottom: 1rem;">Software Development</h3>
+                <p>Robust, logic-driven, and highly optimized object-oriented application design utilizing C++.</p>
+            </div>
+            <div class="glass-card hidden" style="transition-delay: 0.2s;">
+                <h3 style="color: #f5576c; margin-bottom: 1rem;">Database Architecture</h3>
+                <p>Advanced schema design, data normalization, and complex transactional querying in Microsoft SQL Server.</p>
+            </div>
+            <div class="glass-card hidden" style="transition-delay: 0.3s;">
+                <h3 style="color: #f5576c; margin-bottom: 1rem;">Network Engineering</h3>
+                <p>Designing secure, multi-site enterprise topologies and routing configurations via Cisco Packet Tracer.</p>
+            </div>
+            <div class="glass-card hidden" style="transition-delay: 0.4s;">
+                <h3 style="color: #f5576c; margin-bottom: 1rem;">Algorithmic Optimization</h3>
+                <p>High-efficiency problem solving focusing on advanced Data Structures and Algorithms (DSA).</p>
+            </div>
+            <div class="glass-card hidden" style="transition-delay: 0.5s;">
+                <h3 style="color: #f5576c; margin-bottom: 1rem;">Technical Consulting</h3>
+                <p>Strategic project planning, system architecture advice, and translating ambiguous client ideas into technical realities.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. EDUCATION -->
+    <section id="education">
+        <h2 class="section-title title-landing hidden">Education</h2>
+        <div class="glass-card hidden" style="border-left: 4px solid #00f2fe;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap;">
+                <div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">BSCS - Bachelor of Science in Computer Science</h3>
+                    <p style="color: #4facfe; font-weight: 600;">University of Management & Technology Lahore</p>
+                </div>
+                <p style="color: var(--text-muted);">2024 — 2028 (5th Semester)</p>
+            </div>
+            <ul style="margin-top: 1.5rem; list-style-position: inside; color: var(--text-muted);">
+                <li style="margin-bottom: 0.5rem;">Specialization in highly optimized Software Engineering principles.</li>
+                <li style="margin-bottom: 0.5rem;">Core mastery of Object-Oriented Programming (OOP).</li>
+                <li>Advanced application of Data Structures & Algorithms (DSA).</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 5. PROJECTS -->
+    <section id="projects">
+        <h2 class="section-title title-services hidden">Featured Architecture</h2>
+        <div class="grid-3">
+            <div class="glass-card hidden">
+                <h3>YT Autonomous Media Pipeline</h3>
+                <p style="margin: 1rem 0; color: var(--text-muted); font-size: 0.95rem;">Engineered a fully autonomous, state-aware media processing engine utilizing AI APIs to dynamically compile, render, and execute workflows.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">FFmpeg</span>
+                    <span class="tech-tag">Gemini AI</span>
+                </div>
+            </div>
+            <div class="glass-card hidden" style="transition-delay: 0.2s;">
+                <h3>Integrated Project DBMS</h3>
+                <p style="margin: 1rem 0; color: var(--text-muted); font-size: 0.95rem;">Designed and implemented a normalized relational database schema utilizing multi-table joins, complex queries, and strict integrity constraints.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Microsoft SQL Server</span>
+                    <span class="tech-tag">Relational Design</span>
+                </div>
+            </div>
+            <div class="glass-card hidden" style="transition-delay: 0.4s;">
+                <h3>Multi-Site Enterprise Network</h3>
+                <p style="margin: 1rem 0; color: var(--text-muted); font-size: 0.95rem;">Designed and configured a multi-site enterprise network, implementing complex routing protocols and endpoint security verifications.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Cisco Packet Tracer</span>
+                    <span class="tech-tag">Routing Protocols</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. SKILLS -->
+    <section id="skills">
+        <h2 class="section-title title-skills hidden">The Toolkit</h2>
+        <div class="grid-2">
+            <div class="hidden">
+                <div class="skill-group">
+                    <div class="skill-header"><span>C++ / OOP Foundation</span><span>95%</span></div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" data-width="95%"></div></div>
+                </div>
+                <div class="skill-group">
+                    <div class="skill-header"><span>Python & AI Automation</span><span>90%</span></div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" data-width="90%"></div></div>
+                </div>
+                <div class="skill-group">
+                    <div class="skill-header"><span>Microsoft SQL Server / DBMS</span><span>85%</span></div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" data-width="85%"></div></div>
+                </div>
+                <div class="skill-group">
+                    <div class="skill-header"><span>Data Structures & Algorithms</span><span>90%</span></div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" data-width="90%"></div></div>
+                </div>
+            </div>
+            
+            <div class="hidden" style="transition-delay: 0.3s;">
+                <div class="skill-group">
+                    <div class="skill-header"><span>Systems Architecture</span><span>90%</span></div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" data-width="90%"></div></div>
+                </div>
+                <div class="skill-group">
+                    <div class="skill-header"><span>API Integration</span><span>85%</span></div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" data-width="85%"></div></div>
+                </div>
+                <div class="skill-group">
+                    <div class="skill-header"><span>Cisco Packet Tracer / Networking</span><span>80%</span></div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" data-width="80%"></div></div>
+                </div>
+                <div class="skill-group">
+                    <div class="skill-header"><span>Git & Version Control</span><span>85%</span></div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" data-width="85%"></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. CONTACT -->
+    <section id="contact">
+        <h2 class="section-title title-skills hidden">Initiate a Project</h2>
+        <div class="grid-2">
+            <div class="glass-card hidden">
+                <form action="mailto:mekalbutt.services@gmail.com" method="post" enctype="text/plain">
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="email" name="Email" placeholder="Your Email Address" required>
+                    <input type="text" name="Subject" placeholder="Subject" required>
+                    <textarea name="Message" placeholder="How can I help engineer your vision?" required></textarea>
+                    <button type="submit" class="btn" style="background: var(--grad-skills); color: #000; width: 100%;">Send Message</button>
+                </form>
+            </div>
+            
+            <div class="hidden" style="transition-delay: 0.3s;">
+                <h3 style="font-size: 2rem; margin-bottom: 1rem; color: #38f9d7;">Let's Connect.</h3>
+                <p style="margin-bottom: 2rem; color: var(--text-muted);">Whether you have a complex system to build, an AI agent to automate, or just want to discuss software architecture—my inbox is always open.</p>
+                <div style="margin-bottom: 1rem;">
+                    <strong style="color: #fff;">Email:</strong><br> mekalbutt.services@gmail.com
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <strong style="color: #fff;">Location:</strong><br> Lahore, Pakistan
+                </div>
+                <div style="margin-top: 2rem;">
+                    <a href="https://www.linkedin.com/in/mekal-butt-039581346" target="_blank" class="btn" style="border: 1px solid #38f9d7; color: #38f9d7;">Connect on LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCROLL ANIMATION SCRIPT -->
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                    
+                    // Trigger progress bars specifically
+                    if(entry.target.id === 'skills') {
+                        const bars = document.querySelectorAll('.progress-bar-fill');
+                        bars.forEach(bar => {
+                            bar.style.width = bar.getAttribute('data-width');
+                        });
+                    }
+                }
+            });
+        }, { threshold: 0.1 });
+
+        const hiddenElements = document.querySelectorAll('.hidden');
+        hiddenElements.forEach((el) => observer.observe(el));
+        
+        // Ensure skills section observes correctly
+        const skillsSection = document.getElementById('skills');
+        if(skillsSection) observer.observe(skillsSection);
+    </script>
+</body>
+</html>
