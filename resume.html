@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mekal Butt - Resume</title>
+    <style>
+        /* Print and layout configurations */
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #525659;
+            color: #2b2b2b;
+        }
+        .resume-container {
+            width: 850px; /* Standard A4 Width */
+            min-height: 1100px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 50px 60px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        
+        /* Header Section */
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #1b365d;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            font-size: 38px;
+            color: #1b365d;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+        .header .subtitle {
+            font-size: 14px;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .contact-info {
+            font-size: 12px;
+            color: #444;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .contact-info a {
+            color: #0056b3;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Section Headings */
+        h2 {
+            font-size: 16px;
+            color: #1b365d;
+            text-transform: uppercase;
+            border-bottom: 1.5px solid #1b365d;
+            padding-bottom: 4px;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        /* General Typography */
+        p, ul, ol, li {
+            font-size: 13px;
+            line-height: 1.5;
+            margin: 0 0 8px 0;
+        }
+        ul, ol {
+            padding-left: 20px;
+            margin-bottom: 12px;
+        }
+        .bold { font-weight: bold; color: #1b365d; }
+        .italic { font-style: italic; }
+
+        /* Two-way layout for dates/titles */
+        .split-text {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 4px;
+        }
+        .split-text .title { font-weight: bold; font-size: 14px; color: #2b2b2b; }
+        .split-text .date { font-size: 12px; color: #1b365d; font-weight: bold; }
+        .subtitle-text { font-style: italic; font-size: 13px; margin-bottom: 6px; color: #555; }
+
+        /* Project links */
+        .project-links-container {
+            margin-bottom: 6px;
+        }
+        .project-link {
+            font-size: 12px;
+            color: #0056b3;
+            text-decoration: none;
+            display: inline-block;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        .project-link:hover { text-decoration: underline; }
+
+        /* Grid for skills */
+        .skills-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        .skill-item {
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="resume-container">
+    
+    <!-- HEADER -->
+    <div class="header">
+        <h1>MEKAL BUTT</h1>
+        <div class="subtitle">Computer Science & Systems Engineering</div>
+        <div class="contact-info">
+            <span>+92 345 0003006</span>
+            <span>mekalbutt.services@gmail.com</span>
+            <span>Lake City Lahore, Pakistan</span>
+        </div>
+        <div class="contact-info" style="margin-top: 6px;">
+            <a href="https://www.linkedin.com/in/mekal-butt-039581346" target="_blank">LinkedIn</a> | 
+            <a href="https://github.com/Mekal2006" target="_blank">GitHub</a> | 
+            <a href="https://mekal2006.github.io/Mekal_butt_Portfolio/" target="_blank">Portfolio</a>
+        </div>
+    </div>
+
+    <!-- OBJECTIVE -->
+    <h2>Professional Objective</h2>
+    <p>A dedicated 5th-semester Computer Science student at the University of Management and Technology, working towards a specialization in Cybersecurity and Computer Networks. Backed by 4+ years of foundational experience in C++ logic building, alongside specialized expertise in modern AI workflows and autonomous automation using Python and Cursor. Demonstrated hands-on capability through complex academic projects spanning database design, data structures, and enterprise network deployment. Actively seeking a remote part-time role or technical internship to apply strong technical adaptability, rapid learning, and a commitment to systems defense in solving real-world challenges.</p>
+
+    <!-- EDUCATION -->
+    <h2>Education</h2>
+    <div class="split-text">
+        <span class="title">University of Management & Technology</span>
+        <span class="date">2024 &ndash; 2028</span>
+    </div>
+    <div class="subtitle-text">Bachelor of Science in Computer Science (BSCS) &bull; 5th Semester &bull; Lahore, Pakistan</div>
+
+    <!-- TECHNICAL COMPETENCIES -->
+    <h2>Technical Competencies</h2>
+    <div class="skills-container">
+        <div class="skill-item"><span class="bold">Programming:</span> C++, C, Object-Oriented Programming (OOP)</div>
+        <div class="skill-item"><span class="bold">AI & Automation:</span> Agentic AI & Autonomous Agents, AI Pair Programming (Python), Prompt Engineering, API Integration</div>
+        <div class="skill-item"><span class="bold">Networking:</span> Cisco Packet Tracer, Network Topology, Routing Protocols, Security & Basic Protocols, Server/PC Configurations, Subnetting</div>
+        <div class="skill-item"><span class="bold">Database:</span> SQL, DBMS, Relational Design, SaaS</div>
+        <div class="skill-item"><span class="bold">Core Concepts:</span> Data Structures & Algorithms (DSA), Software Engineering</div>
+        <div class="skill-item"><span class="bold">Security:</span> Vulnerability Assessment (Beginner)</div>
+    </div>
+
+    <!-- PROJECTS & PRACTICAL EXPERIENCE -->
+    <h2>Projects & Practical Experience</h2>
+
+    <!-- MULTI-SITE ENTERPRISE NETWORK -->
+    <div class="split-text">
+        <span class="title">Multi-Site Enterprise Network</span>
+        <span class="date">June 2026</span>
+    </div>
+    <div class="subtitle-text">Cisco Packet Tracer & Routing Protocols</div>
+    <div class="project-links-container">
+        <a href="https://github.com/Mekal2006" class="project-link" target="_blank">&#128279; View Architecture on GitHub</a>
+        <a href="https://mekal2006.github.io/Mekal_butt_Portfolio/" class="project-link" target="_blank">&#128279; View Network Topology on Portfolio</a>
+    </div>
+    <ul>
+        <li>Architected and configured a comprehensive multi-site network topology representing a functional corporate infrastructure.</li>
+        <li>Implemented dynamic routing protocols, functional server configurations, and foundational endpoint security measures to simulate a real-world enterprise environment.</li>
+    </ul>
+
+    <!-- INTEGRATED PROJECT DBMS -->
+    <div class="split-text">
+        <span class="title">Integrated Project Management Database (DBMS)</span>
+        <span class="date">March 2026</span>
+    </div>
+    <div class="subtitle-text">Relational Architecture & SQL Development</div>
+    <div class="project-links-container">
+        <a href="https://mekal2006.github.io/Mekal_butt_Portfolio/" class="project-link" target="_blank">&#128279; View ERD (Database Schema) on Portfolio</a>
+    </div>
+    <ul>
+        <li>Designed and implemented a normalized relational database schema for an Integrated Project Management System.</li>
+        <li>Developed SQL queries, joins, constraints, and data retrieval operations.</li>
+        <li>Applied DBMS concepts alongside C++, OOP, and DSA to ensure data integrity and optimize query performance.</li>
+    </ul>
+
+    <!-- SERVICES & OFFERINGS -->
+    <h2>Services & Offerings</h2>
+    <ul>
+        <li><span class="bold">Database Design & SQL Development</span> - Schema design, normalization, and query writing, with or without AI-assisted tools.</li>
+        <li><span class="bold">C++ / OOP Software Development</span> - Building, testing, and debugging object-oriented applications.</li>
+        <li><span class="bold">Data Structures & Algorithm Problem-Solving</span> - Delivering efficient solutions with time and space complexity analysis.</li>
+        <li><span class="bold">Network Design & Configuration</span> - Topology planning and subnetting using Cisco Packet Tracer.</li>
+        <li><span class="bold">AI-Assisted Programming & Debugging (Python)</span> - Utilizing Agentic AI and pair-programming tools to accelerate development cycles.</li>
+        <li><span class="bold">Technical Content Writing</span> - Producing clear documentation, reports, and explainer articles on Computer Science topics.</li>
+    </ul>
+
+    <!-- CERTIFICATIONS -->
+    <h2>Certifications</h2>
+    <p><span class="bold">Cisco Networking Academy:</span> Specialized coursework encompassing foundational and intermediate networking architectures, security protocols, and their respective tools and environments.</p>
+    <ol>
+        <li><span class="bold">Intro to Networks by Cisco</span></li>
+    </ol>
+
+</div>
+</body>
+</html>
