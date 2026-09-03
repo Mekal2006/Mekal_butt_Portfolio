@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio of Mekal Butt, Systems Architect & AI Developer.">
-    <title>Mekal Butt | Systems Architect & AI Developer</title>
+    <meta name="description" content="Portfolio of Mekal Butt, Automation Engineer & Network Architect.">
+    <title>Mekal Butt | Automation Engineer & Network Architect</title>
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
@@ -215,6 +215,12 @@
             border: 2px solid var(--primary-red);
             box-shadow: 0 0 30px rgba(230, 0, 0, 0.2);
             object-fit: cover;
+            cursor: pointer; /* Added for the Easter Egg */
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .profile-img:hover {
+            transform: scale(1.02);
+            border-color: var(--primary-hover);
         }
 
         /* SOLID CARDS */
@@ -398,6 +404,108 @@
             .hamburger.toggle span:nth-child(2) { opacity: 0; }
             .hamburger.toggle span:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); background: var(--primary-red); }
         }
+
+        /* ---------------------------------
+           NEW CSS ADDITIONS
+        --------------------------------- */
+
+        /* CISCO BADGE LINK */
+        .cisco-badge-link {
+            color: var(--primary-red);
+            text-decoration: none;
+            font-weight: 600;
+            transition: text-shadow 0.3s;
+        }
+        .cisco-badge-link:hover {
+            text-shadow: 0 0 10px rgba(230, 0, 0, 0.5);
+        }
+
+        /* EASTER EGG TOAST */
+        #toast-container {
+            position: fixed;
+            bottom: -100px;
+            right: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--primary-red);
+            border-left: 5px solid var(--primary-red);
+            color: var(--text-main);
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(230, 0, 0, 0.3);
+            font-family: 'Inter', sans-serif;
+            z-index: 9999;
+            transition: bottom 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+        }
+        #toast-container.show {
+            bottom: 30px;
+        }
+        .spin-chicken {
+            display: inline-block;
+            font-size: 1.5rem;
+            animation: spin 1s linear forwards;
+        }
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        /* PENDING STATUS CARD */
+        .pending-card {
+            position: relative;
+            background: #050505;
+            border: 1px solid #222;
+            overflow: hidden;
+            filter: grayscale(0.8);
+            cursor: not-allowed;
+        }
+        .pending-card:hover {
+            filter: grayscale(0.4);
+            border-color: #444;
+        }
+        .scanlines {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .pending-banner {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%) rotate(-10deg);
+            background: rgba(230, 0, 0, 0.95);
+            color: white;
+            padding: 10px 0;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            z-index: 2;
+            width: 120%;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(230, 0, 0, 0.5);
+            animation: heartbeat 2s infinite;
+        }
+        @keyframes heartbeat {
+            0%, 20%, 100% { transform: translate(-50%, -50%) rotate(-10deg) scale(1); }
+            10% { transform: translate(-50%, -50%) rotate(-10deg) scale(1.05); }
+        }
+        .pending-card:hover .glitch-target {
+            animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+        }
+        @keyframes glitch {
+            0% { transform: translate(0) }
+            20% { transform: translate(-2px, 1px) }
+            40% { transform: translate(-1px, -1px) }
+            60% { transform: translate(2px, 1px) }
+            80% { transform: translate(1px, -1px) }
+            100% { transform: translate(0) }
+        }
     </style>
 </head>
 <body>
@@ -423,7 +531,7 @@
     <section id="landing">
         <div class="grid-2">
             <div>
-                <h1 class="hidden">Systems Architect & <br><span>AI Developer.</span></h1>
+                <h1 class="hidden">Automation Engineer & <br><span>Network Architect.</span></h1>
                 <p class="motto hidden" style="transition-delay: 0.2s;">
                     On a mission to make people's lives easier, integrating AI to build "tomorrow"......today.
                 </p>
@@ -436,7 +544,7 @@
             </div>
             
             <div class="profile-img-container hidden" style="transition-delay: 0.2s;">
-                <img src="My pfp.png" alt="Mekal Butt Profile Picture" width="800" height="800" class="profile-img">
+                <img id="profile-pic" src="My pfp.png" alt="Mekal Butt Profile Picture" width="800" height="800" class="profile-img">
             </div>
         </div>
     </section>
@@ -457,10 +565,12 @@
             <div class="solid-card hidden" style="transition-delay: 0.2s; border-color: var(--primary-red);">
                 <h3 style="color: var(--primary-red);">Technical Profile</h3>
                 <ul style="list-style: none; margin-top: 1rem; color: var(--text-muted); line-height: 2.2;">
-                    <li><strong>Languages:</strong> C++, Python, SQL</li>
-                    <li><strong>Core Edge:</strong> AI-Assisted Programming & Automation</li>
-                    <li><strong>Networking:</strong> Cisco Packet Tracer, Subnetting</li>
-                    <li><strong>Status:</strong> Available for Remote Engagements</li>
+                    <li><strong>Core Foundation:</strong> C++ (4+ years foundational logic providing base for modern workflows)</li>
+                    <li><strong>AI Automation:</strong> Python (1 year, primarily driven via Cursor IDE for autonomous pipelines)</li>
+                    <li><strong>Languages & Stack:</strong> SQL, HTML, CSS, Java</li>
+                    <li><strong>Version Control:</strong> Professional Git & GitHub (active architecture & automation repositories)</li>
+                    <li><strong>Networking:</strong> <a href="./Cert(ITN).pdf" target="_blank" rel="noopener noreferrer" class="cisco-badge-link">Cisco Verified Networking Basics ↗</a></li>
+                    <li><strong>Status:</strong> LFG / Available for Remote Engagements</li>
                 </ul>
             </div>
         </div>
@@ -469,6 +579,7 @@
     <!-- SERVICES SECTION -->
     <section id="services">
         <h2 class="section-title hidden">Service <span>Arsenal</span></h2>
+        
         <div class="grid-3">
             <div class="solid-card hidden">
                 <h3 style="color: var(--text-main);">AI-Assisted Programming & Debugging</h3>
@@ -476,6 +587,7 @@
                 <div class="tech-tags">
                     <span class="tech-tag">Python</span>
                     <span class="tech-tag">Agentic AI</span>
+                    <span class="tech-tag">Cursor</span>
                 </div>
             </div>
             
@@ -498,11 +610,12 @@
             </div>
 
             <div class="solid-card hidden" style="transition-delay: 0.3s;">
-                <h3 style="color: var(--text-main);">Network Design & Configuration</h3>
-                <p style="color: var(--text-muted);">Enterprise topology planning, security routing, and subnetting utilizing Cisco networking environments.</p>
+                <h3 style="color: var(--text-main);">Web Development</h3>
+                <p style="color: var(--text-muted);">I create professional portfolios and small to medium-sized company professional dynamic (with animations) websites.</p>
                 <div class="tech-tags">
-                    <span class="tech-tag">Cisco Packet Tracer</span>
-                    <span class="tech-tag">Subnetting</span>
+                    <span class="tech-tag">HTML</span>
+                    <span class="tech-tag">CSS</span>
+                    <span class="tech-tag">JavaScript</span>
                 </div>
             </div>
 
@@ -523,6 +636,37 @@
                     <span class="tech-tag">Technical Reports</span>
                 </div>
             </div>
+            
+            <!-- PENDING STATUS CARD 1: CYBER SECURITY -->
+            <div class="solid-card pending-card hidden" style="transition-delay: 0.6s;">
+                <div class="scanlines"></div>
+                <div class="pending-banner">COMING SOON - UNDER WORK</div>
+                <div class="glitch-target" style="opacity: 0.25;">
+                    <h3 style="color: var(--text-main);">Offensive Security & Cyber Defense</h3>
+                    <p style="color: var(--text-muted);">Currently grinding the skill tree for advanced cyber defense, penetration testing, and network security. Content under work until level requirement is met.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Pen-Testing</span>
+                        <span class="tech-tag">Cyber Defense</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PENDING STATUS CARD 2: ADVANCED NETWORKS -->
+            <div class="solid-card pending-card hidden" style="transition-delay: 0.7s;">
+                <div class="scanlines"></div>
+                <div class="pending-banner">COMING SOON - UNDER WORK</div>
+                <div class="glitch-target" style="opacity: 0.25;">
+                    <h3 style="color: var(--text-main);">Advanced Secure Network Designs</h3>
+                    <p style="color: var(--text-muted);">I will design and showcase working logical and physical complex network designs for homes, offices, educational institutes, and all types of small-medium organizations using Cisco Packet Tracer.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Packet Tracer</span>
+                        <span class="tech-tag">Logical Design</span>
+                        <span class="tech-tag">Physical Design</span>
+                        <span class="tech-tag">Troubleshooting</span>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -572,7 +716,7 @@
         <h2 class="section-title hidden">Client <span>FAQ</span></h2>
         <div class="faq-container">
             
-            <details class="hidden">
+            <details class="hidden" style="transition-delay: 0s;">
                 <summary>Why hire an AI-native developer over a traditional "Senior" professional?</summary>
                 <div class="faq-content">
                     <strong>Velocity, adaptability, and modern tooling.</strong> Many established professionals get comfortable with legacy systems and outdated manual workflows. As an AI-native developer, I leverage bleeding-edge tools like Cursor and Agentic workflows to automate the boilerplate. I don't carry an ego; I am cost-effective, hyper-adaptable, and highly motivated. This means I execute complex structural builds faster than traditional cycles allow, keeping my focus strictly on flawless architecture.
@@ -580,16 +724,44 @@
             </details>
 
             <details class="hidden" style="transition-delay: 0.1s;">
-                <summary>Do you take on custom Python automation or AI agent requests?</summary>
+                <summary>As an AI-assisted developer, how do you verify the integrity and security of generated code?</summary>
                 <div class="faq-content">
-                    Yes. If you have a manual, repetitive digital task, I can map the logic and engineer a headless Python script to run it autonomously. I specialize in API integration, dynamic scheduling, and creating state-aware systems that run indefinitely.
+                    AI is an accelerator, not an autopilot. My 4+ years of deep C++ and OOP logic allow me to manually audit, debug, and structurally verify every line of code the AI suggests before it ever hits production. I treat AI output as a draft that must pass strict logic and memory management checks.
+                </div>
+            </details>
+            
+            <details class="hidden" style="transition-delay: 0.2s;">
+                <summary>How do you measure the ROI for the custom automation systems you build?</summary>
+                <div class="faq-content">
+                    By calculating the exact hours a team spends on a repetitive task per month, multiplying it by their hourly rate, and comparing it to the near-zero running cost of a headless Python script. My goal is to engineer systems that pay for themselves in the first 30 days.
                 </div>
             </details>
 
-            <details class="hidden" style="transition-delay: 0.2s;">
+            <details class="hidden" style="transition-delay: 0.3s;">
+                <summary>How seamlessly can your Python automation scripts integrate with legacy software?</summary>
+                <div class="faq-content">
+                    Through REST APIs, headless browser automation, and direct database connections, my scripts act as a bridge. Whether you need dynamic scheduling or data scraping, I automate workflows without requiring you to rip out or replace your existing systems.
+                </div>
+            </details>
+            
+            <details class="hidden" style="transition-delay: 0.4s;">
+                <summary>How do you handle error states and edge cases in your autonomous pipelines?</summary>
+                <div class="faq-content">
+                    I build state-aware scripts with robust <code>try-except</code> blocks, detailed logging, and automated alert systems. If a script hits an unforeseen edge case, it pauses and reports it immediately rather than failing silently or corrupting data.
+                </div>
+            </details>
+            
+            <details class="hidden" style="transition-delay: 0.5s;">
+                <summary>Do you provide technical documentation and structural handovers upon project completion?</summary>
+                <div class="faq-content">
+                    Absolutely. I believe a system is only as good as its documentation. Whether it is a web deployment, a Python pipeline, or a multi-site network configuration, I provide comprehensive diagrams, logical flows, and heavily commented code for seamless handovers.
+                </div>
+            </details>
+
+            <details class="hidden" style="transition-delay: 0.6s;">
                 <summary>Are you available for remote part-time roles or technical internships?</summary>
                 <div class="faq-content">
-                    Absolutely. I am actively seeking remote part-time roles or technical internships to apply my systems defense knowledge and AI workflow automation skills to solve real-world business challenges.
+                    Yes. I am actively seeking remote part-time roles or technical internships to apply my systems defense knowledge and AI workflow automation skills to solve real-world business challenges.
                 </div>
             </details>
 
@@ -654,6 +826,12 @@
         <p>&copy; <span id="year"></span> Mekal Butt. Developed in Pakistan.</p>
     </footer>
 
+    <!-- EASTER EGG TOAST NOTIFICATION -->
+    <div id="toast-container">
+        <span>Did YOU try to zoom in at my already enlarged picture,sus!! Anyways, here's a chicken </span>
+        <span id="toast-emoji">🐔</span>
+    </div>
+
     <script>
         // Scroll Animations
         const observer = new IntersectionObserver((entries) => {
@@ -697,6 +875,26 @@
 
         // Set Current Year
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Easter Egg Logic triggered by Profile Picture
+        const profilePic = document.getElementById('profile-pic');
+        const toast = document.getElementById('toast-container');
+        const toastEmoji = document.getElementById('toast-emoji');
+
+        if(profilePic) {
+            profilePic.addEventListener('click', (e) => {
+                e.preventDefault(); 
+                toast.classList.add('show');
+                toastEmoji.classList.add('spin-chicken');
+                
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    setTimeout(() => {
+                        toastEmoji.classList.remove('spin-chicken');
+                    }, 500); 
+                }, 4500); // Stays on screen a little longer to read the new text
+            });
+        }
     </script>
 </body>
 </html>
