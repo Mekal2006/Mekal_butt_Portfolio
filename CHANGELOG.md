@@ -1,4 +1,5 @@
 # Portfolio Version History
+Created the portfolio before and haven't made any changes before the date below.
 
 ### September 3, 2026 (v1.1)
 1. Overhauled the Technical Profile to highlight core C++ logic and modern Python automation workflows.
